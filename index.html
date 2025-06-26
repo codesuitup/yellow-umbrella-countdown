@@ -13,7 +13,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       color: #fff;
       background: url('VQfIpwO.jpg') no-repeat center center fixed;
       background-size: cover;
@@ -21,21 +21,22 @@
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 6vw;
       margin-bottom: 20px;
       text-shadow: 0 3px 5px rgba(0,0,0,0.6);
     }
 
-    #stella-line {
+    #stella-line, #ted-line {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 1.5s ease-out, transform 1.5s ease-out;
       max-width: 600px;
-      font-size: 1.3em;
+      font-size: 4vw;
       font-style: italic;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
       color: #ffe082;
       margin-bottom: 40px;
+      padding: 0 5vw;
     }
 
     #stella-line.visible {
@@ -45,9 +46,15 @@
 
     #countdown {
       display: flex;
-      gap: 30px;
       flex-wrap: wrap;
+      gap: 30px;
       justify-content: center;
+      animation: fadeIn 2s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .time-box {
@@ -58,6 +65,8 @@
       width: 120px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.4s ease-in-out;
+      flex-shrink: 1;
+      min-width: 70px;
     }
 
     .time-box.animate {
@@ -78,10 +87,56 @@
 
     #ted-line {
       margin-top: 50px;
-      font-size: 1.4em;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      font-size: 4vw;
       display: none;
       max-width: 600px;
+      padding: 0 5vw;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 7vw;
+      }
+
+      .time-box {
+        width: 90px;
+        padding: 15px 20px;
+      }
+
+      .number {
+        font-size: 2em;
+      }
+
+      .label {
+        font-size: 0.9em;
+      }
+
+      #stella-line, #ted-line {
+        font-size: 1.1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 9vw;
+      }
+
+      .time-box {
+        width: 75px;
+        padding: 10px 15px;
+      }
+
+      .number {
+        font-size: 1.5em;
+      }
+
+      .label {
+        font-size: 0.8em;
+      }
+
+      #stella-line, #ted-line {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
