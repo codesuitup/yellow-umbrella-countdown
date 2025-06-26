@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journey to the Yellow Umbrella</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      background: url('VQfIpwO.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 0 3px 5px rgba(0,0,0,0.6);
+    }
+
+    #stella-line {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+      max-width: 600px;
+      font-size: 1.3em;
+      font-style: italic;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      color: #ffe082;
+      margin-bottom: 40px;
+    }
+
+    #stella-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #countdown {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-box {
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 120px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .time-box.animate {
+      transform: scale(1.15);
+    }
+
+    .number {
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 1em;
+      letter-spacing: 1px;
+      color: #ffeb3b;
+    }
+
+    #ted-line {
+      margin-top: 50px;
+      font-size: 1.4em;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      display: none;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Journey to the Yellow Umbrella</h1>
+
+  <div id="stella-line">
+    “I know that you're tired of waiting. And you may have to wait a little while more, but she's on her way, Ted. And she's getting here as fast as she can.” – <em>Stella Zinman</em>
+  </div>
+
+  <div id="countdown">
+    <div class="time-box" id="daysBox">
+      <div class="number" id="days">--</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="time-box" id="hoursBox">
+      <div class="number" id="hours">--</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="time-box" id="minutesBox">
+      <div class="number" id="minutes">--</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="time-box" id="secondsBox">
+      <div class="number" id="seconds">--</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <div id="ted-line">“Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em></div>
+
+  <script>
+    const targetDate = new Date('June 12, 2029 00:00:00').getTime();
+    const boxes = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
+      daysBox: document.getElementById("daysBox"),
+      hoursBox: document.getElementById("hoursBox"),
+      minutesBox: document.getElementById("minutesBox"),
+      secondsBox: document.getElementById("secondsBox")
+    };
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff < 0) {
+        Object.values(boxes).forEach(el => {
+          if (el.classList) el.innerText = "0";
+        });
+        clearInterval(interval);
+        document.getElementById("ted-line").style.display = "block";
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const values = { days: d, hours: h, minutes: m, seconds: s };
+
+      for (let key in values) {
+        const numEl = boxes[key];
+        const boxEl = boxes[key + "Box"];
+        if (numEl.innerText != values[key]) {
+          numEl.innerText = values[key];
+          boxEl.classList.add("animate");
+          setTimeout(() => boxEl.classList.remove("animate"), 300);
+        }
+      }
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("stella-line").classList.add("visible");
+    });
+  </script>
+</body>
+</html>
