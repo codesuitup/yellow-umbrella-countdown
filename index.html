@@ -29,6 +29,10 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
+    .lower-content {
+      margin-top: 80px;
+    }
+
     #stella-line, #ted-line {
       opacity: 0;
       transform: translateY(20px);
@@ -39,6 +43,12 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
       color: #ffe082;
       margin-bottom: 40px;
+    }
+
+    #stella-line {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #stella-line.visible {
@@ -137,34 +147,36 @@
 <body>
   <h1>Journey to the Yellow Umbrella</h1>
 
-  <div id="stella-line">
-    “I know that you're tired of waiting. And you may have to wait a little while more, but she's on her way, Ted. And she's getting here as fast as she can.” – <em>Stella Zinman</em>
-  </div>
+  <div class="lower-content">
+    <div id="stella-line">
+      “I know that you're tired of waiting. And you may have to wait a little while more, but she's on her way, Ted. And she's getting here as fast as she can.” – <em>Stella Zinman</em>
+    </div>
 
-  <div id="countdown">
-    <div class="time-box" id="daysBox">
-      <div class="number" id="days">--</div>
-      <div class="label">Days</div>
+    <div id="countdown">
+      <div class="time-box" id="daysBox">
+        <div class="number" id="days">--</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="time-box" id="hoursBox">
+        <div class="number" id="hours">--</div>
+        <div class="label">Hours</div>
+      </div>
+      <div class="time-box" id="minutesBox">
+        <div class="number" id="minutes">--</div>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="time-box" id="secondsBox">
+        <div class="number" id="seconds">--</div>
+        <div class="label">Seconds</div>
+      </div>
     </div>
-    <div class="time-box" id="hoursBox">
-      <div class="number" id="hours">--</div>
-      <div class="label">Hours</div>
-    </div>
-    <div class="time-box" id="minutesBox">
-      <div class="number" id="minutes">--</div>
-      <div class="label">Minutes</div>
-    </div>
-    <div class="time-box" id="secondsBox">
-      <div class="number" id="seconds">--</div>
-      <div class="label">Seconds</div>
-    </div>
-  </div>
 
-  <img src="yelloww.png" id="umbrella" alt="Yellow Umbrella" onclick="toggleUmbrellaSong()">
-  <audio id="umbrella-audio" src="Hey Beautiful (From How I Met Your MotherTheme).mp3"></audio>
+    <img src="yelloww.png" id="umbrella" alt="Yellow Umbrella" onclick="toggleUmbrellaSong()">
+    <audio id="umbrella-audio" src="Hey Beautiful (From How I Met Your MotherTheme).mp3"></audio>
 
-  <div id="ted-line">
-    “Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em>
+    <div id="ted-line">
+      “Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em>
+    </div>
   </div>
 
   <script>
