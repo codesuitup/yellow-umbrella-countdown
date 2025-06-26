@@ -91,7 +91,17 @@
       max-width: 600px;
     }
 
-    /* 📱 Adjust layout only for phones */
+    #umbrella {
+      width: 150px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: transform 0.2s ease;
+    }
+
+    #umbrella:active {
+      transform: scale(1.1);
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 9vw;
@@ -113,6 +123,10 @@
       #stella-line, #ted-line {
         font-size: 1em;
         padding: 0 5vw;
+      }
+
+      #umbrella {
+        width: 100px;
       }
     }
   </style>
@@ -142,6 +156,9 @@
       <div class="label">Seconds</div>
     </div>
   </div>
+
+  <img src="yelloww.png" id="umbrella" alt="Yellow Umbrella" onclick="toggleUmbrellaSong()">
+  <audio id="umbrella-audio" src="Hey Beautiful (From How I Met Your MotherTheme).mp3"></audio>
 
   <div id="ted-line">“Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em></div>
 
@@ -195,6 +212,15 @@
     window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("stella-line").classList.add("visible");
     });
+
+    const audio = document.getElementById("umbrella-audio");
+    function toggleUmbrellaSong() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
   </script>
 </body>
 </html>
