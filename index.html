@@ -115,6 +115,20 @@
       transform: scale(1.1);
     }
 
+    #rumi-stamp {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.85;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #rumi-stamp:active {
+      transform: scale(1.1);
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 24px;
@@ -140,6 +154,10 @@
 
       #umbrella {
         width: 100px;
+      }
+
+      #rumi-stamp {
+        width: 80px;
       }
     }
   </style>
@@ -178,6 +196,9 @@
       “Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em>
     </div>
   </div>
+
+  <img src="rumi-origin.png" alt="Rumi Origin" id="rumi-stamp" onclick="toggleRumiAudio()">
+  <audio id="rumi-audio" src="Free Lyric Video  KPop Demon Hunters  Netflix Family.mp3"></audio>
 
   <script>
     const targetDate = new Date('June 12, 2029 00:00:00').getTime();
@@ -223,21 +244,30 @@
       }
     }
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    window.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("stella-line").classList.add("visible");
-    });
-
-    const audio = document.getElementById("umbrella-audio");
     function toggleUmbrellaSong() {
+      const audio = document.getElementById("umbrella-audio");
       if (audio.paused) {
         audio.play();
       } else {
         audio.pause();
       }
     }
+
+    function toggleRumiAudio() {
+      const rumi = document.getElementById("rumi-audio");
+      if (rumi.paused) {
+        rumi.play();
+      } else {
+        rumi.pause();
+      }
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("stella-line").classList.add("visible");
+    });
   </script>
 </body>
 </html>
