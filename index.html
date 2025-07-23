@@ -31,6 +31,11 @@
 
     .lower-content {
       margin-top: 80px;
+      padding: 0 10px;
+    }
+
+    .lower-content > * {
+      margin-bottom: 20px;
     }
 
     #stella-line, #ted-line {
@@ -42,13 +47,7 @@
       font-style: italic;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
       color: #ffe082;
-      margin-bottom: 40px;
-    }
-
-    #stella-line {
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 40px;
     }
 
     #stella-line.visible {
@@ -56,11 +55,19 @@
       transform: translateY(0);
     }
 
+    #countdown-container {
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 20px;
+      padding: 20px 25px;
+      margin: 20px auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+    }
+
     #countdown {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 20px;
       animation: fadeIn 2s ease-in-out forwards;
       opacity: 0;
     }
@@ -74,11 +81,9 @@
       padding: 20px 30px;
       border-radius: 15px;
       text-align: center;
-      width: 120px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.4s ease-in-out;
       flex-shrink: 1;
-      min-width: 70px;
     }
 
     .time-box.animate {
@@ -101,7 +106,6 @@
       margin-top: 50px;
       font-size: 1.4em;
       display: none;
-      max-width: 600px;
     }
 
     #umbrella {
@@ -154,14 +158,10 @@
       }
     }
 
+    /* Phone screens */
     @media (max-width: 480px) {
       h1 {
         font-size: 24px;
-      }
-
-      .time-box {
-        width: 75px;
-        padding: 10px 15px;
       }
 
       .number {
@@ -185,6 +185,34 @@
         width: 80px;
       }
     }
+
+    /* Tablet screens */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .time-box {
+        width: auto;
+        padding: 15px 20px;
+      }
+
+      .number {
+        font-size: 2em;
+      }
+
+      #umbrella {
+        width: 120px;
+      }
+
+      #rumi-stamp {
+        width: 90px;
+      }
+
+      #stella-line, #ted-line {
+        font-size: 1.1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -197,22 +225,24 @@
       – <em>Stella Zinman</em>
     </div>
 
-    <div id="countdown">
-      <div class="time-box" id="daysBox">
-        <div class="number" id="days">--</div>
-        <div class="label">Days</div>
-      </div>
-      <div class="time-box" id="hoursBox">
-        <div class="number" id="hours">--</div>
-        <div class="label">Hours</div>
-      </div>
-      <div class="time-box" id="minutesBox">
-        <div class="number" id="minutes">--</div>
-        <div class="label">Minutes</div>
-      </div>
-      <div class="time-box" id="secondsBox">
-        <div class="number" id="seconds">--</div>
-        <div class="label">Seconds</div>
+    <div id="countdown-container">
+      <div id="countdown">
+        <div class="time-box" id="daysBox">
+          <div class="number" id="days">--</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="time-box" id="hoursBox">
+          <div class="number" id="hours">--</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="time-box" id="minutesBox">
+          <div class="number" id="minutes">--</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="time-box" id="secondsBox">
+          <div class="number" id="seconds">--</div>
+          <div class="label">Seconds</div>
+        </div>
       </div>
     </div>
 
