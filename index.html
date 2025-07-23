@@ -129,6 +129,31 @@
       transform: scale(1.1);
     }
 
+    #gojo-quote {
+      font-size: 1.2em;
+      font-style: italic;
+      color: #80d8ff;
+      text-shadow: 0 0 10px #00e5ff;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #gojo-quote.visible {
+      opacity: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.2);
+      }
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 24px;
@@ -167,7 +192,9 @@
 
   <div class="lower-content">
     <div id="stella-line">
-      “I know that you're tired of waiting. And you may have to wait a little while more, but she's on her way, Ted. And she's getting here as fast as she can.” – <em>Stella Zinman</em>
+      “I know that you're tired of waiting. And you may have to wait a little while more,<br>
+      but she's on her way, Ted. And she's getting here as fast as she can.”<br>
+      – <em>Stella Zinman</em>
     </div>
 
     <div id="countdown">
@@ -189,11 +216,16 @@
       </div>
     </div>
 
-    <img src="yelloww.png" id="umbrella" alt="Yellow Umbrella" onclick="toggleUmbrellaSong()">
-    <audio id="umbrella-audio" src="Hey Beautiful (From How I Met Your MotherTheme).mp3"></audio>
+    <img src="yelloww.png" id="umbrella" alt="Yellow Umbrella" onclick="toggleUmbrellaAnimation()">
 
     <div id="ted-line">
       “Because sometimes even if you know how something’s gonna end, that doesn’t mean you can’t enjoy the ride.” – <em>Ted Mosby</em>
+    </div>
+
+    <div id="gojo-quote">“Throughout Heaven and Earth, I alone am the honored one.” – Gojo Satoru</div>
+
+    <div style="margin-top: 40px; font-size: 1.1em; font-style: italic; color: #f8f8f8;">
+      To the one I'm waiting for — see you at the yellow umbrella.
     </div>
   </div>
 
@@ -244,15 +276,6 @@
       }
     }
 
-    function toggleUmbrellaSong() {
-      const audio = document.getElementById("umbrella-audio");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-
     function toggleRumiAudio() {
       const rumi = document.getElementById("rumi-audio");
       if (rumi.paused) {
@@ -260,6 +283,25 @@
       } else {
         rumi.pause();
       }
+    }
+
+    function toggleUmbrellaAnimation() {
+      const umbrella = document.getElementById("umbrella");
+      const gojoQuote = document.getElementById("gojo-quote");
+
+      const heart = document.createElement("div");
+      heart.innerHTML = "💖";
+      heart.style.position = "absolute";
+      heart.style.left = umbrella.offsetLeft + 60 + "px";
+      heart.style.top = umbrella.offsetTop + "px";
+      heart.style.fontSize = "2em";
+      heart.style.animation = "floatUp 1.5s ease forwards";
+      document.body.appendChild(heart);
+
+      setTimeout(() => document.body.removeChild(heart), 1500);
+
+      gojoQuote.classList.add("visible");
+      setTimeout(() => gojoQuote.classList.remove("visible"), 2500);
     }
 
     const interval = setInterval(updateCountdown, 1000);
